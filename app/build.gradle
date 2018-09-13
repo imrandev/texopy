@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.codzunk.texcopy"
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+ext {
+    // Version
+    supportVersion = '27.1.1'
+    // Support Libraries dependencies
+    supportDependencies = [
+            design              : "com.android.support:design:${supportVersion}",
+            recyclerView        : "com.android.support:recyclerview-v7:${supportVersion}",
+            cardView            : "com.android.support:cardview-v7:${supportVersion}",
+            appCompat           : "com.android.support:appcompat-v7:${supportVersion}",
+            supportAnnotation   : "com.android.support:support-annotations:${supportVersion}",
+            support_v4          : "com.android.support:support-v4:${supportVersion}",
+            support_media_compat: "com.android.support:support-media-compat:${supportVersion}",
+            customtabs          : "com.android.support:customtabs:${supportVersion}"
+    ]
+    firebaseVersion = '16.0.1'
+
+    // Firebase dependencies
+    firebase = [
+            core        : "com.google.firebase:firebase-core:${firebaseVersion}",
+            database    : "com.google.firebase:firebase-database:${firebaseVersion}",
+            storage     : "com.google.firebase:firebase-storage:${firebaseVersion}",
+            crash       : "com.google.firebase:firebase-crash:${firebaseVersion}",
+            auth        : "com.google.firebase:firebase-auth:${firebaseVersion}",
+            messaging   : "com.google.firebase:firebase-messaging:${firebaseVersion}",
+            remoteConfig: "com.google.firebase:firebase-config:${firebaseVersion}",
+            invites     : "com.google.firebase:firebase-invites:${firebaseVersion}",
+            adMod       : "com.google.firebase:firebase-ads:${firebaseVersion}",
+            appIndexing : "com.google.android.gms:play-services-appindexing:${firebaseVersion}"
+    ]
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation supportDependencies.appCompat
+    implementation supportDependencies.support_v4
+    implementation supportDependencies.support_media_compat
+    implementation supportDependencies.design
+    implementation supportDependencies.cardView
+    implementation supportDependencies.customtabs
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.google.firebase:firebase-ml-vision:17.0.0'
+    implementation firebase.core
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+apply plugin: 'com.google.gms.google-services'
